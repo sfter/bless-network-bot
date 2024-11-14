@@ -64,3 +64,8 @@ To get your token, follow this step:
 
 The total time is refreshed every 10minute connection.
 One account only can have 5 nodeid max and can't be deleted, I recomended to save your Nodeid(pubkey) and hardwareid of your account
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
