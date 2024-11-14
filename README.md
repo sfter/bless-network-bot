@@ -1,5 +1,7 @@
 ## BLESS NETWORK BOT 
 
+![bless](assets/bless.jpg)
+
 This script automates network or node operations for Blockless Bless Network Bot.
 
 ## Register Bless Network
