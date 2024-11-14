@@ -110,7 +110,7 @@ def display_header():
 """
     
     print(custom_ascii_art)
-    print(f"{Fore.YELLOW}BLESS NETWORK BOT")
+    print(f"{Fore.YELLOW}BLESS NETWORK BOT{Fore.RESET}")
     print("AUTHOR : NOFAN RAMBE", Fore.RESET)
     print("WELCOME & ENJOY SIR!", Fore.RESET)
     print(f"\n")
