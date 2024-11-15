@@ -11,6 +11,8 @@ This script automates network or node operations for Blockless Bless Network Bot
 ## Features
 
 - **Automated node interaction**
+- **Multi Nodeid**
+- **Proxy support**
 
 ## Installation
 
@@ -32,14 +34,19 @@ This script automates network or node operations for Blockless Bless Network Bot
 ## Usage
 
 1. Register to blockless bless network account first, if you dont have you can register [HERE](https://bless.network).
+
 2. Set and Modify `user.txt`. Below how to setup this file, put your B7S_AUTH_TOKEN in the text file, example below:
    ```
    eyJhbGcixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    ```
 To get your token, follow this step:
+
 - Login to your grass account in `https://bless.network/dashboard`, make sure you is in this link before go to next step
+
 - Go to inspect element, press F12 or right-click then pick inspect element in your browser
+
 - Go to application tab - look for Local Storage in storage list -> click `https://bless.network` and you will see your B7S_AUTH_TOKEN.
+
 - or you can go Console tab and paste this
   ```bash
   localStorage.getItem('B7S_AUTH_TOKEN').  ```
@@ -49,11 +56,14 @@ To get your token, follow this step:
    ```
 To get your token, follow this step:
 - Download the [extension](https://chromewebstore.google.com/detail/bless/pljbjcehnhcnofmkdbjolghdcjnmekia)
+
 - After you download the extension, open `chrome://extensions/?id=pljbjcehnhcnofmkdbjolghdcjnmekia`
+
 - Enable `Developer mode` in top right, then press `service worker`. You will see new tab open.
 ![image](https://github.com/user-attachments/assets/63151405-cd49-4dff-9eec-a787a9aa3144)
 
 - Go to `network` tab, then open the `Bless extension` and login to your account.
+
 - After you login to your account, search name with your pubkey (example : `12D3xxxx`), open and copy the `pubkey` and `hardwareid`
 ![image](https://github.com/user-attachments/assets/70bcb0c6-9c47-4c81-9bf4-a55ab912fba6)
 
