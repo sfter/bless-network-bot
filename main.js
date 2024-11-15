@@ -25,233 +25,103 @@ async function readAuthToken() {
     const data = await fs.readFile('user.txt', 'utf-8');
     return data.trim();
 }
-
-
-
 async function promptUseProxy() {
-
     const rl = readline.createInterface({
-
         input: process.stdin,
-
         output: process.stdout
-
     });
-
-
-
     return new Promise(resolve => {
-
         rl.question('Do you want to use a proxy? (y/n): ', answer => {
-
             rl.close();
-
             resolve(answer.toLowerCase() === 'y');
-
         });
-
     });
-
 }
-
-
-
 async function fetchIpAddress(fetch, agent) {
-
     const response = await fetch(ipServiceUrl, { agent });
-
     const data = await response.json();
-
     console.log(`[${new Date().toISOString()}] IP fetch response:`, data);
-
     return data.ip;
-
 }
-
-
-
 async function registerNode(nodeId, hardwareId, ipAddress, proxy) {
-
     const fetch = await loadFetch();
-
     const authToken = await readAuthToken();
-
     let agent;
-
-
-
     if (proxy) {
-
         agent = new HttpsProxyAgent(proxy);
-
     }
-
-
-
     const registerUrl = `${apiBaseUrl}/nodes/${nodeId}`;
-
     console.log(`[${new Date().toISOString()}] Registering node with IP: ${ipAddress}, Hardware ID: ${hardwareId}`);
-
     const response = await fetch(registerUrl, {
-
         method: "POST",
-
         headers: {
-
             "Content-Type": "application/json",
-
             Authorization: `Bearer ${authToken}`
-
         },
-
         body: JSON.stringify({
-
             ipAddress,
-
             hardwareId
-
         }),
-
         agent
-
     });
-
-
-
     let data;
-
     try {
-
         data = await response.json();
-
-    } catch (error) {
-
+    }
+    catch (error) {
         const text = await response.text();
-
         console.error(`[${new Date().toISOString()}] Failed to parse JSON. Response text:`, text);
-
         throw error;
-
     }
-
-
-
     console.log(`[${new Date().toISOString()}] Registration response:`, data);
-
     return data;
-
 }
-
-
-
 async function startSession(nodeId, proxy) {
-
     const fetch = await loadFetch();
-
     const authToken = await readAuthToken();
-
     let agent;
-
-
-
     if (proxy) {
-
         agent = new HttpsProxyAgent(proxy);
-
     }
-
-
-
     const startSessionUrl = `${apiBaseUrl}/nodes/${nodeId}/start-session`;
-
     console.log(`[${new Date().toISOString()}] Starting session for node ${nodeId}, it might take a while...`);
-
     const response = await fetch(startSessionUrl, {
-
         method: "POST",
-
         headers: {
-
             Authorization: `Bearer ${authToken}`
-
         },
-
         agent
-
     });
-
     const data = await response.json();
-
     console.log(`[${new Date().toISOString()}] Start session response:`, data);
-
     return data;
-
 }
-
-
-
 async function pingNode(nodeId, proxy, ipAddress) {
-
     const fetch = await loadFetch();
-
     const chalk = await import('chalk');
-
     const authToken = await readAuthToken();
-
     let agent;
-
-
-
     if (proxy) {
-
         agent = new HttpsProxyAgent(proxy);
-
     }
-
-
-
     const pingUrl = `${apiBaseUrl}/nodes/${nodeId}/ping`;
-
     console.log(`[${new Date().toISOString()}] Pinging node ${nodeId} using proxy ${proxy}`);
-
     const response = await fetch(pingUrl, {
-
         method: "POST",
-
         headers: {
-
             Authorization: `Bearer ${authToken}`
-
         },
-
         agent
-
     });
-
     const data = await response.json();
-
-    
-
     const lastPing = data.pings[data.pings.length - 1].timestamp;
-
     const logMessage = `[${new Date().toISOString()}] Ping response, ID: ${chalk.default.green(data._id)}, NodeID: ${chalk.default.green(data.nodeId)}, Last Ping: ${chalk.default.yellow(lastPing)}, Proxy: ${proxy}, IP: ${ipAddress}`;
-
     console.log(logMessage);
-
-    
-
     return data;
-
 }
-
-
-
 async function displayHeader() {
-
     const chalk = await import('chalk');
-
     console.log("");
-
     console.log(chalk.default.yellow(" ============================================"));
     console.log(chalk.default.yellow("|        BLOCKLESS BLESS NETWORK BOT         |"));
     console.log(chalk.default.yellow("|           AUTHOR : NOFAN RAMBE             |"));
