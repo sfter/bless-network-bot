@@ -1,4 +1,3 @@
-import { displayHeader } from './src/utils/utils.js';
 const fs = require('fs').promises;
 const { HttpsProxyAgent } = require('https-proxy-agent');
 const readline = require('readline');
@@ -142,9 +141,16 @@ async function fetchIpAddress(fetch, agent) {
     console.log(`[${new Date().toISOString()}] IP fetch response:`, data);
     return data.ip;
 }
-(async function main() {
-    await displayHeader();
-});
+async function displayHeader() {
+const chalk = await import('chalk');
+  console.log("");
+  console.log(chalk.default.yellow(" ============================================"));
+  console.log(chalk.default.yellow("|        BLOCKLESS BELSS NETWORK BOT        |"));
+  console.log(chalk.default.yellow("|           AUTHOR : NOFAN RAMBE            |"));
+  console.log(chalk.default.yellow("|           WELCOME & ENJOY SIR!            |")); 
+  console.log(chalk.default.yellow(" ============================================"));
+  console.log("");
+}
 async function runAll() {
     try {
         await displayHeader();
