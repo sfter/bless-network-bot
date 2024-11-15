@@ -21,12 +21,12 @@ This script automates network or node operations for Blockless Bless Network Bot
 
 2. Install the necessary dependencies:
    ```bash
-   pip install -r requirements.txt
+   npm install
    ```
 
 4. Run Bot
    ```bash
-   python main.py
+   node index.js
    ```
 
 ## Usage
@@ -59,7 +59,7 @@ To get your token, follow this step:
 
 4. Run the script:
    ```bash
-   python main.py
+   node index.js
    ```
 
 ## Note
