@@ -28,7 +28,7 @@ This script automates network or node operations for Blockless Bless Network Bot
 
 4. Run Bot
    ```bash
-   node index.js
+   node main.js
    ```
 
 ## Usage
@@ -69,7 +69,7 @@ To get your token, follow this step:
 
 4. Run the script:
    ```bash
-   node index.js
+   node main.js
    ```
 
 ## Note
